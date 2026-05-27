@@ -16,6 +16,8 @@
 		A10007 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20007; };
 		A10008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20008; };
 		A10009 /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20011; };
+		A10010 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20012; };
+		A10011 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20013; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		A20009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A20010 /* BalconySmoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BalconySmoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A20011 /* CharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterView.swift; sourceTree = "<group>"; };
+		A20012 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		A20013 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 				A20006 /* ResultViews.swift */,
 				A20007 /* TitleView.swift */,
 				A20011 /* CharacterView.swift */,
+				A20012 /* StatsView.swift */,
+				A20013 /* TutorialView.swift */,
 				A20008 /* Assets.xcassets */,
 				A20009 /* Info.plist */,
 			);
@@ -154,6 +160,8 @@
 				A10006 /* ResultViews.swift in Sources */,
 				A10007 /* TitleView.swift in Sources */,
 				A10009 /* CharacterView.swift in Sources */,
+				A10010 /* StatsView.swift in Sources */,
+				A10011 /* TutorialView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
