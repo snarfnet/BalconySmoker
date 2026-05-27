@@ -1,0 +1,77 @@
+/* Title */
+"app_title" = "バルコニースモーカー";
+"app_subtitle" = "BALCONY SMOKER";
+"app_desc" = "監視の目を逃れながら\nひっそりと一服を楽しもう";
+"start_button" = "こっそり始める";
+"start_hint" = "監視の目を逃れながら\n一服を完了せよ！";
+
+/* HUD */
+"alert_label" = "バレ度";
+"smoke_gauge" = "煙草ゲージ";
+"enemies" = "敵";
+"high_score" = "ハイスコア";
+
+/* Controls */
+"hide_button" = "隠れる";
+"hiding" = "隠れ中...";
+"cooldown" = "待機中";
+"smoke_button" = "煙草を吸う";
+
+/* Threats */
+"threat_neighbor_left" = "左の隣人が見てる！";
+"threat_neighbor_right" = "右の隣人が見てる！";
+"threat_wife" = "妻が来た！！逃げろ！！";
+"threat_crow" = "カラスが接近中！";
+"threat_laundry" = "洗濯物が飛んできた！";
+"threat_ufo" = "謎の光が...UFO!?";
+"threat_rain" = "豪雨！煙草が濡れる！";
+
+/* Caught */
+"caught_title" = "バレた！";
+"caught_neighbor_left" = "隣人に見られた！\n「はあ？煙草？非常識ですよ！」";
+"caught_neighbor_right" = "隣人に見られた！\n「臭いんですけど！」";
+"caught_wife" = "妻にバレた！！\n「あなた！また吸ってる！！禁煙って言ったでしょ！！」";
+"caught_crow" = "カラスに煙草を奪われた！\n「カアッ」←勝利のポーズ";
+"caught_laundry" = "洗濯物が直撃！\n「なんで火の粉がついてんのよ！」";
+"caught_ufo" = "UFOにスキャンされた！\n「ピー...タバコ成分検出...拿捕します」";
+"caught_rain" = "ずぶ濡れ...\n煙草が湿って消えた";
+"lives_remaining" = "残りライフ:";
+
+/* Stage Clear */
+"stage_clear" = "一服完了！";
+"preparing_next" = "次の煙草を準備中...";
+"next_harder" = "次の煙草はもっと難しい...";
+
+/* Game Over */
+"game_over" = "ゲームオーバー";
+"game_over_desc" = "完全にバレた...";
+"final_score" = "最終スコア";
+"cigs_smoked" = "吸い切った本数";
+"total_cigs" = "累計本数";
+"retry_button" = "もう一服";
+"title_button" = "タイトルへ";
+"new_high_score" = "NEW HIGH SCORE!";
+
+/* Ad */
+"ad_label" = "広 告";
+
+/* Combo */
+"combo_3" = "いい調子！";
+"combo_4" = "スパスパ！";
+"combo_5" = "チェーンスモーカー！";
+"combo_8" = "ニコチンの神！！";
+
+/* Clear messages */
+"clear_1" = "まあまあだ";
+"clear_2" = "なかなかやるじゃないか";
+"clear_3" = "腕が上がってきたな";
+"clear_5" = "煙草の達人";
+"clear_10" = "伝説のスモーカー";
+"clear_default" = "いい感じだ";
+"clear_god" = "もはや神の領域";
+
+/* Game Over messages */
+"go_0" = "一本も吸えなかったか...";
+"go_few" = "まだまだ修行が足りない";
+"go_mid" = "なかなかの腕前だった";
+"go_many" = "見事な一生だった";

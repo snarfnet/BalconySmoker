@@ -1,0 +1,77 @@
+/* Title */
+"app_title" = "Balcony Smoker";
+"app_subtitle" = "BALCONY SMOKER";
+"app_desc" = "Sneak a smoke while dodging\nwatchful eyes";
+"start_button" = "Start Sneaking";
+"start_hint" = "Dodge the watchers and\nfinish your smoke!";
+
+/* HUD */
+"alert_label" = "Alert";
+"smoke_gauge" = "Smoke Gauge";
+"enemies" = "Enemies";
+"high_score" = "High Score";
+
+/* Controls */
+"hide_button" = "Hide";
+"hiding" = "Hiding...";
+"cooldown" = "Cooldown";
+"smoke_button" = "Smoke";
+
+/* Threats */
+"threat_neighbor_left" = "Left neighbor is watching!";
+"threat_neighbor_right" = "Right neighbor is watching!";
+"threat_wife" = "Wife incoming!! RUN!!";
+"threat_crow" = "Crow approaching!";
+"threat_laundry" = "Laundry flying at you!";
+"threat_ufo" = "A strange light... UFO!?";
+"threat_rain" = "Downpour! Cig getting wet!";
+
+/* Caught */
+"caught_title" = "Busted!";
+"caught_neighbor_left" = "Neighbor spotted you!\n\"Smoking? How rude!\"";
+"caught_neighbor_right" = "Neighbor spotted you!\n\"It stinks over here!\"";
+"caught_wife" = "Wife caught you!!\n\"You're smoking AGAIN?! You promised to QUIT!!\"";
+"caught_crow" = "Crow stole your cigarette!\n*victory caw*";
+"caught_laundry" = "Laundry direct hit!\n\"Why are there burn marks on this?!\"";
+"caught_ufo" = "Scanned by UFO!\n\"Beep... Tobacco detected... Abducting.\"";
+"caught_rain" = "Soaking wet...\nCigarette fizzled out";
+"lives_remaining" = "Lives:";
+
+/* Stage Clear */
+"stage_clear" = "Smoke Complete!";
+"preparing_next" = "Preparing next cigarette...";
+"next_harder" = "Next one will be tougher...";
+
+/* Game Over */
+"game_over" = "Game Over";
+"game_over_desc" = "Totally busted...";
+"final_score" = "Final Score";
+"cigs_smoked" = "Cigarettes Smoked";
+"total_cigs" = "Total Smoked";
+"retry_button" = "One More Smoke";
+"title_button" = "Title";
+"new_high_score" = "NEW HIGH SCORE!";
+
+/* Ad */
+"ad_label" = "AD";
+
+/* Combo */
+"combo_3" = "Nice!";
+"combo_4" = "Puff Puff!";
+"combo_5" = "Chain Smoker!";
+"combo_8" = "Nicotine God!!";
+
+/* Clear messages */
+"clear_1" = "Not bad";
+"clear_2" = "Pretty good";
+"clear_3" = "Getting skilled";
+"clear_5" = "Smoke Master";
+"clear_10" = "Legendary Smoker";
+"clear_default" = "Nice job";
+"clear_god" = "Godlike";
+
+/* Game Over messages */
+"go_0" = "Couldn't even finish one...";
+"go_few" = "Keep practicing";
+"go_mid" = "Not bad at all";
+"go_many" = "A life well smoked";
