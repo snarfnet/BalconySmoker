@@ -35,7 +35,7 @@ struct GamePlayView: View {
                     // Scene
                     DrawnBalconyView(vm: vm)
 
-                    Spacer().frame(height: 20)
+                    Spacer().frame(height: 20 * LayoutScale.factor)
 
                     // Buttons
                     ControlsView(vm: vm)
@@ -147,6 +147,7 @@ struct SceneView: View {
     let width: CGFloat
     @State private var puffOpacity: Double = 0
     @State private var puffOffset: CGFloat = 0
+    private var s: CGFloat { LayoutScale.factor }
 
     var isHiding: Bool { vm.hideTimeLeft > 0 }
     var manIcon: String { isHiding ? "🙈" : "🧍‍♂️" }
@@ -166,13 +167,13 @@ struct SceneView: View {
                             startPoint: .top, endPoint: .bottom
                         )
                     )
-                    .frame(height: 200)
+                    .frame(height: 200 * s)
                     .overlay(
                         // Wall stain / texture lines
                         VStack(spacing: 0) {
                             ForEach(0..<4) { _ in
                                 Rectangle().fill(Color.white.opacity(0.02)).frame(height: 1)
-                                Spacer().frame(height: 18)
+                                Spacer().frame(height: 18 * s)
                             }
                             Spacer()
                         }
@@ -183,17 +184,17 @@ struct SceneView: View {
             // Sliding door (wife entrance) — center back
             RoundedRectangle(cornerRadius: 3)
                 .fill(Color(red: 0.12, green: 0.12, blue: 0.18))
-                .frame(width: 70, height: 110)
+                .frame(width: 70 * s, height: 110 * s)
                 .overlay(
                     HStack(spacing: 0) {
                         // Glass panes
                         Rectangle().fill(Color(red: 0.08, green: 0.10, blue: 0.20).opacity(0.6))
-                            .frame(width: 33)
+                            .frame(width: 33 * s)
                             .overlay(
                                 Rectangle().stroke(Color.white.opacity(0.08), lineWidth: 0.5)
                             )
                         Rectangle().fill(Color(red: 0.06, green: 0.08, blue: 0.18).opacity(0.6))
-                            .frame(width: 33)
+                            .frame(width: 33 * s)
                             .overlay(
                                 Rectangle().stroke(Color.white.opacity(0.08), lineWidth: 0.5)
                             )
@@ -202,10 +203,10 @@ struct SceneView: View {
                 )
                 .overlay(
                     // Door handle
-                    Circle().fill(Color.gray.opacity(0.4)).frame(width: 5, height: 5)
-                        .offset(x: -12, y: 10)
+                    Circle().fill(Color.gray.opacity(0.4)).frame(width: 5 * s, height: 5 * s)
+                        .offset(x: -12 * s, y: 10 * s)
                 )
-                .offset(y: -60)
+                .offset(y: -60 * s)
 
             // Neighbor windows — left and right sides
             HStack {
@@ -220,82 +221,82 @@ struct SceneView: View {
                 )
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, 80)
+            .padding(.bottom, 80 * s)
 
             // Outdoor unit (室外機) — bottom left
             ZStack {
                 RoundedRectangle(cornerRadius: 3)
                     .fill(Color(red: 0.55, green: 0.55, blue: 0.53))
-                    .frame(width: 44, height: 30)
+                    .frame(width: 44 * s, height: 30 * s)
                 // Fan grille
                 Circle().stroke(Color.gray.opacity(0.4), lineWidth: 1.5)
-                    .frame(width: 18, height: 18)
-                    .offset(x: 6)
+                    .frame(width: 18 * s, height: 18 * s)
+                    .offset(x: 6 * s)
                 // Vent lines
-                VStack(spacing: 3) {
+                VStack(spacing: 3 * s) {
                     ForEach(0..<3) { _ in
-                        Rectangle().fill(Color.gray.opacity(0.3)).frame(width: 10, height: 1.5)
+                        Rectangle().fill(Color.gray.opacity(0.3)).frame(width: 10 * s, height: 1.5)
                     }
                 }
-                .offset(x: -12)
+                .offset(x: -12 * s)
             }
-            .offset(x: -120, y: -28)
+            .offset(x: -120 * s, y: -28 * s)
 
             // Planter (プランター) — bottom right
             ZStack {
                 // Pot
                 Trapezoid()
                     .fill(Color(red: 0.55, green: 0.30, blue: 0.15))
-                    .frame(width: 36, height: 20)
+                    .frame(width: 36 * s, height: 20 * s)
                 // Plant
-                Text("🌱").font(.system(size: 16)).offset(y: -14)
+                Text("🌱").font(.system(size: 16 * s)).offset(y: -14 * s)
             }
-            .offset(x: 110, y: -28)
+            .offset(x: 110 * s, y: -28 * s)
 
             // Clothesline pole (物干し竿) — top area
             Rectangle()
                 .fill(Color(red: 0.6, green: 0.6, blue: 0.65))
-                .frame(width: 2, height: 50)
-                .offset(x: -80, y: -155)
+                .frame(width: 2, height: 50 * s)
+                .offset(x: -80 * s, y: -155 * s)
             Rectangle()
                 .fill(Color(red: 0.6, green: 0.6, blue: 0.65))
-                .frame(width: 2, height: 50)
-                .offset(x: 80, y: -155)
+                .frame(width: 2, height: 50 * s)
+                .offset(x: 80 * s, y: -155 * s)
             // Pole horizontal
             Rectangle()
                 .fill(Color(red: 0.65, green: 0.65, blue: 0.7))
-                .frame(width: 160, height: 2)
-                .offset(y: -180)
+                .frame(width: 160 * s, height: 2)
+                .offset(y: -180 * s)
             // Hanging towel
-            Text("🧦").font(.system(size: 14)).offset(x: -40, y: -168)
-            Text("👕").font(.system(size: 16)).offset(x: 20, y: -166)
+            Text("🧦").font(.system(size: 14 * s)).offset(x: -40 * s, y: -168 * s)
+            Text("👕").font(.system(size: 16 * s)).offset(x: 20 * s, y: -166 * s)
 
             // Wife appears from sliding door
             if vm.activeThreat == .wife {
-                Text("🙍‍♀️").font(.system(size: 50))
-                    .offset(y: -80)
+                Text("🙍‍♀️").font(.system(size: 50 * s))
+                    .offset(y: -80 * s)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
 
             // UFO
             if vm.activeThreat == .ufo {
                 VStack(spacing: 0) {
-                    Text("🛸").font(.system(size: 50))
+                    Text("🛸").font(.system(size: 50 * s))
                     Rectangle()
                         .fill(LinearGradient(
                             colors: [.yellow.opacity(0.4), .clear],
                             startPoint: .top, endPoint: .bottom
                         ))
-                        .frame(width: 60, height: 80)
+                        .frame(width: 60 * s, height: 80 * s)
                 }
-                .offset(y: -60)
+                .offset(y: -60 * s)
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
 
             // Crow flying
             if vm.activeThreat == .crow {
-                Text("🐦‍⬛").font(.system(size: 40))
-                    .offset(x: 0, y: -100)
+                Text("🐦‍⬛").font(.system(size: 40 * s))
+                    .offset(x: 0, y: -100 * s)
                     .transition(.asymmetric(
                         insertion: .move(edge: .leading),
                         removal: .move(edge: .trailing)
@@ -304,8 +305,8 @@ struct SceneView: View {
 
             // Laundry falling
             if vm.activeThreat == .laundry {
-                Text("👗").font(.system(size: 40))
-                    .offset(x: 30, y: -80)
+                Text("👗").font(.system(size: 40 * s))
+                    .offset(x: 30 * s, y: -80 * s)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
 
@@ -320,7 +321,7 @@ struct SceneView: View {
                         startPoint: .top, endPoint: .bottom
                     )
                 )
-                .frame(height: 24)
+                .frame(height: 24 * s)
 
             // Railing — metal balcony railing
             Rectangle()
@@ -333,15 +334,15 @@ struct SceneView: View {
                         startPoint: .top, endPoint: .bottom
                     )
                 )
-                .frame(height: 4)
-                .offset(y: -44)
+                .frame(height: 4 * s)
+                .offset(y: -44 * s)
             // Top rail
             Rectangle()
                 .fill(Color(red: 0.55, green: 0.55, blue: 0.60))
-                .frame(height: 6)
-                .offset(y: -44)
+                .frame(height: 6 * s)
+                .offset(y: -44 * s)
             // Vertical bars
-            HStack(spacing: 16) {
+            HStack(spacing: 16 * s) {
                 ForEach(0..<10) { _ in
                     Rectangle()
                         .fill(
@@ -353,39 +354,39 @@ struct SceneView: View {
                                 startPoint: .top, endPoint: .bottom
                             )
                         )
-                        .frame(width: 4, height: 44)
+                        .frame(width: 4 * s, height: 44 * s)
                 }
             }
-            .offset(y: -22)
+            .offset(y: -22 * s)
             // Bottom rail
             Rectangle()
                 .fill(Color(red: 0.50, green: 0.50, blue: 0.55))
-                .frame(height: 3)
+                .frame(height: 3 * s)
                 .offset(y: 0)
 
             // Man
             ZStack {
                 // Smoke puff
                 if vm.showPuff {
-                    Text("💨").font(.system(size: 24))
-                        .offset(x: 25, y: -100)
+                    Text("💨").font(.system(size: 24 * s))
+                        .offset(x: 25 * s, y: -100 * s)
                         .transition(.opacity.combined(with: .offset(x: 0, y: -20)))
                 }
                 // Cigarette glow
                 if !isHiding {
                     Circle()
                         .fill(Color.orange.opacity(0.6))
-                        .frame(width: 8, height: 8)
-                        .offset(x: 26, y: -48)
+                        .frame(width: 8 * s, height: 8 * s)
+                        .offset(x: 26 * s, y: -48 * s)
                         .blur(radius: 4)
                 }
-                Text(manIcon).font(.system(size: 72))
-                    .offset(y: isHiding ? 15 : 0)
+                Text(manIcon).font(.system(size: 72 * s))
+                    .offset(y: isHiding ? 15 * s : 0)
                     .animation(.spring(response: 0.2), value: isHiding)
             }
-            .offset(y: -20)
+            .offset(y: -20 * s)
         }
-        .frame(height: 260)
+        .frame(height: 260 * s)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .padding(.horizontal, 16)
         .animation(.easeInOut(duration: 0.3), value: vm.activeThreat)
@@ -395,6 +396,7 @@ struct SceneView: View {
 struct WindowView: View {
     let showEnemy: Bool
     let enemyIcon: String
+    private var s: CGFloat { LayoutScale.factor }
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 4)
@@ -403,12 +405,12 @@ struct WindowView: View {
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(Color.white.opacity(0.15), lineWidth: 1)
                 )
-                .frame(width: 70, height: 80)
+                .frame(width: 70 * s, height: 80 * s)
             if showEnemy {
-                Text(enemyIcon).font(.system(size: 32))
+                Text(enemyIcon).font(.system(size: 32 * s))
                     .transition(.scale.combined(with: .opacity))
             } else {
-                VStack(spacing: 8) {
+                VStack(spacing: 8 * s) {
                     ForEach(0..<4) { _ in
                         Rectangle().fill(Color.white.opacity(0.08)).frame(height: 2)
                     }
@@ -450,7 +452,7 @@ struct ThreatOverlayView: View {
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.red.opacity(blinkOn ? 0.8 : 0.2), lineWidth: 2))
                 .cornerRadius(10)
                 .padding(.horizontal, 24)
-                .padding(.top, 120)
+                .padding(.top, 120 * LayoutScale.factor)
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
             Spacer()

@@ -1,17 +1,33 @@
 import SwiftUI
 
+// MARK: - iPad Layout Scale
+
+/// Returns a scale factor for adapting fixed-pixel layouts to iPad.
+/// iPhone: 1.0, iPad: ~1.6–1.8 depending on screen width.
+enum LayoutScale {
+    static var factor: CGFloat {
+        let width = UIScreen.main.bounds.width
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            // iPad mini ~744, iPad 10th ~820, iPad Pro 12.9 ~1024
+            return min(width / 430, 2.0) // 430 is iPhone 15 Pro Max width
+        }
+        return 1.0
+    }
+}
+
 // MARK: - Ojisan Character (SwiftUI drawn)
 
 struct OjisanView: View {
     let isHiding: Bool
     let isSmokingPuff: Bool
+    private var s: CGFloat { LayoutScale.factor }
 
     var body: some View {
         ZStack {
             // Smoke puff
             if isSmokingPuff {
                 SmokePuffView()
-                    .offset(x: 50, y: -60)
+                    .offset(x: 50 * s, y: -60 * s)
                     .transition(.opacity.combined(with: .offset(y: -10)))
             }
 
@@ -19,17 +35,17 @@ struct OjisanView: View {
             Image("OjisanChar")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: isHiding ? 80 : 160)
+                .frame(height: isHiding ? 80 * s : 160 * s)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .shadow(color: .black.opacity(0.5), radius: 8, y: 4)
-                .offset(y: isHiding ? 40 : 0)
+                .offset(y: isHiding ? 40 * s : 0)
                 .animation(.spring(response: 0.25), value: isHiding)
 
             // Hiding overlay
             if isHiding {
                 Text("🙈")
-                    .font(.system(size: 40))
-                    .offset(y: 20)
+                    .font(.system(size: 40 * s))
+                    .offset(y: 20 * s)
             }
         }
     }
@@ -99,34 +115,35 @@ struct SmokePuffView: View {
 // MARK: - Night Sky with Moon
 
 struct NightSkyView: View {
+    private var s: CGFloat { LayoutScale.factor }
     var body: some View {
         ZStack {
             // Moon
             ZStack {
                 Circle()
                     .fill(Color(red: 0.95, green: 0.92, blue: 0.80))
-                    .frame(width: 40, height: 40)
+                    .frame(width: 40 * s, height: 40 * s)
                     .blur(radius: 1)
                 // Moon glow
                 Circle()
                     .fill(Color.yellow.opacity(0.08))
-                    .frame(width: 80, height: 80)
+                    .frame(width: 80 * s, height: 80 * s)
                     .blur(radius: 20)
                 // Craters
                 Circle()
                     .fill(Color(red: 0.88, green: 0.85, blue: 0.72))
-                    .frame(width: 6, height: 6)
-                    .offset(x: -6, y: -4)
+                    .frame(width: 6 * s, height: 6 * s)
+                    .offset(x: -6 * s, y: -4 * s)
                 Circle()
                     .fill(Color(red: 0.88, green: 0.85, blue: 0.72))
-                    .frame(width: 4, height: 4)
-                    .offset(x: 8, y: 6)
+                    .frame(width: 4 * s, height: 4 * s)
+                    .offset(x: 8 * s, y: 6 * s)
                 Circle()
                     .fill(Color(red: 0.88, green: 0.85, blue: 0.72))
-                    .frame(width: 5, height: 5)
-                    .offset(x: 3, y: -8)
+                    .frame(width: 5 * s, height: 5 * s)
+                    .offset(x: 3 * s, y: -8 * s)
             }
-            .offset(x: 120, y: -60)
+            .offset(x: 120 * s, y: -60 * s)
         }
     }
 }
@@ -136,6 +153,7 @@ struct NightSkyView: View {
 struct DrawnBalconyView: View {
     @ObservedObject var vm: GameViewModel
     var isHiding: Bool { vm.hideTimeLeft > 0 }
+    private var s: CGFloat { LayoutScale.factor }
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -143,7 +161,7 @@ struct DrawnBalconyView: View {
             Image("BalconyBG")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 280)
+                .frame(height: 280 * s)
                 .clipped()
 
             // Night overlay
@@ -161,23 +179,27 @@ struct DrawnBalconyView: View {
 
             // Ashtray on railing
             AshtrayView(butts: vm.cigarettesSmoked)
-                .offset(x: 50, y: -47)
+                .scaleEffect(s)
+                .offset(x: 50 * s, y: -47 * s)
 
             // Beer can
             BeerCanView()
-                .offset(x: -80, y: -30)
+                .scaleEffect(s)
+                .offset(x: -80 * s, y: -30 * s)
 
             // UFO
             if vm.activeThreat == .ufo {
                 DrawnUFOView()
-                    .offset(y: -120)
+                    .scaleEffect(s)
+                    .offset(y: -120 * s)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
 
             // Crow
             if vm.activeThreat == .crow {
                 DrawnCrowView()
-                    .offset(x: 0, y: -140)
+                    .scaleEffect(s)
+                    .offset(x: 0, y: -140 * s)
                     .transition(.asymmetric(
                         insertion: .move(edge: .leading),
                         removal: .move(edge: .trailing)
@@ -186,27 +208,29 @@ struct DrawnBalconyView: View {
 
             // Laundry falling
             if vm.activeThreat == .laundry {
-                Text("👕").font(.system(size: 36))
-                    .offset(x: 30, y: -100)
+                Text("👕").font(.system(size: 36 * s))
+                    .offset(x: 30 * s, y: -100 * s)
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
 
             // Neighbor eyes peeking
             if vm.activeThreat == .neighborLeft {
                 NeighborPeekView()
-                    .offset(x: -140, y: -80)
+                    .scaleEffect(s)
+                    .offset(x: -140 * s, y: -80 * s)
                     .transition(.scale.combined(with: .opacity))
             }
             if vm.activeThreat == .neighborRight {
                 NeighborPeekView()
-                    .offset(x: 140, y: -80)
+                    .scaleEffect(s)
+                    .offset(x: 140 * s, y: -80 * s)
                     .transition(.scale.combined(with: .opacity))
             }
 
             // Wife from sliding door
             if vm.activeThreat == .wife {
                 WifeView()
-                    .offset(x: 60, y: -75)
+                    .offset(x: 60 * s, y: -75 * s)
                     .transition(.move(edge: .trailing).combined(with: .opacity))
             }
 
@@ -215,9 +239,9 @@ struct DrawnBalconyView: View {
                 isHiding: isHiding,
                 isSmokingPuff: vm.showPuff
             )
-            .offset(y: -25)
+            .offset(y: -25 * s)
         }
-        .frame(height: 280)
+        .frame(height: 280 * s)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .padding(.horizontal, 16)
         .animation(.easeInOut(duration: 0.3), value: vm.activeThreat)
@@ -228,12 +252,13 @@ struct DrawnBalconyView: View {
 
 struct NeighborPeekView: View {
     @State private var blink = false
+    private var s: CGFloat { LayoutScale.factor }
     var body: some View {
-        HStack(spacing: 6) {
-            Circle().fill(Color.white).frame(width: 8, height: 8)
-                .overlay(Circle().fill(Color.black).frame(width: 4, height: 4))
-            Circle().fill(Color.white).frame(width: 8, height: 8)
-                .overlay(Circle().fill(Color.black).frame(width: 4, height: 4))
+        HStack(spacing: 6 * s) {
+            Circle().fill(Color.white).frame(width: 8 * s, height: 8 * s)
+                .overlay(Circle().fill(Color.black).frame(width: 4 * s, height: 4 * s))
+            Circle().fill(Color.white).frame(width: 8 * s, height: 8 * s)
+                .overlay(Circle().fill(Color.black).frame(width: 4 * s, height: 4 * s))
         }
         .scaleEffect(blink ? 1.0 : 0.9)
         .onAppear {
@@ -246,12 +271,13 @@ struct NeighborPeekView: View {
 
 struct SlidingDoorView: View {
     let wifeAppearing: Bool
+    private var s: CGFloat { LayoutScale.factor }
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 3)
                 .fill(Color(red: 0.10, green: 0.10, blue: 0.16))
-                .frame(width: 74, height: 115)
+                .frame(width: 74 * s, height: 115 * s)
             HStack(spacing: 1) {
                 // Left pane
                 Rectangle()
@@ -264,7 +290,7 @@ struct SlidingDoorView: View {
                             startPoint: .top, endPoint: .bottom
                         )
                     )
-                    .frame(width: 34)
+                    .frame(width: 34 * s)
                     .overlay(Rectangle().stroke(Color.white.opacity(0.06), lineWidth: 0.5))
                 // Right pane
                 Rectangle()
@@ -277,24 +303,24 @@ struct SlidingDoorView: View {
                             startPoint: .top, endPoint: .bottom
                         )
                     )
-                    .frame(width: 34)
+                    .frame(width: 34 * s)
                     .overlay(Rectangle().stroke(Color.white.opacity(0.06), lineWidth: 0.5))
             }
-            .frame(height: 109)
+            .frame(height: 109 * s)
             .padding(.horizontal, 2)
 
             // Light from inside when wife appears
             if wifeAppearing {
                 Rectangle()
                     .fill(Color.yellow.opacity(0.15))
-                    .frame(width: 70, height: 111)
+                    .frame(width: 70 * s, height: 111 * s)
             }
 
             // Handle
             Circle()
                 .fill(Color.gray.opacity(0.4))
-                .frame(width: 5, height: 5)
-                .offset(x: -14, y: 12)
+                .frame(width: 5 * s, height: 5 * s)
+                .offset(x: -14 * s, y: 12 * s)
         }
     }
 }
@@ -306,12 +332,13 @@ enum WindowSide { case left, right }
 struct NeighborWindowView: View {
     let isLooking: Bool
     let side: WindowSide
+    private var s: CGFloat { LayoutScale.factor }
 
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 3)
                 .fill(isLooking ? Color.yellow.opacity(0.25) : Color(red: 0.10, green: 0.10, blue: 0.18))
-                .frame(width: 60, height: 72)
+                .frame(width: 60 * s, height: 72 * s)
                 .overlay(
                     RoundedRectangle(cornerRadius: 3)
                         .stroke(Color.white.opacity(0.1), lineWidth: 1)
@@ -319,20 +346,20 @@ struct NeighborWindowView: View {
 
             if isLooking {
                 // Angry neighbor silhouette
-                VStack(spacing: 2) {
+                VStack(spacing: 2 * s) {
                     Circle()
                         .fill(Color.black.opacity(0.6))
-                        .frame(width: 20, height: 20)
+                        .frame(width: 20 * s, height: 20 * s)
                     // Eyes
-                    HStack(spacing: 6) {
-                        Circle().fill(Color.white).frame(width: 5, height: 5)
-                        Circle().fill(Color.white).frame(width: 5, height: 5)
+                    HStack(spacing: 6 * s) {
+                        Circle().fill(Color.white).frame(width: 5 * s, height: 5 * s)
+                        Circle().fill(Color.white).frame(width: 5 * s, height: 5 * s)
                     }
-                    .offset(y: -14)
+                    .offset(y: -14 * s)
                 }
             } else {
                 // Curtain / blind lines
-                VStack(spacing: 6) {
+                VStack(spacing: 6 * s) {
                     ForEach(0..<5) { _ in
                         Rectangle().fill(Color.white.opacity(0.06)).frame(height: 1.5)
                     }
@@ -533,6 +560,7 @@ struct BeerCanView: View {
 // MARK: - Balcony Railing
 
 struct BalconyRailingView: View {
+    private var s: CGFloat { LayoutScale.factor }
     var body: some View {
         ZStack(alignment: .bottom) {
             // Top rail
@@ -543,11 +571,11 @@ struct BalconyRailingView: View {
                         startPoint: .top, endPoint: .bottom
                     )
                 )
-                .frame(height: 5)
-                .offset(y: -44)
+                .frame(height: 5 * s)
+                .offset(y: -44 * s)
 
             // Vertical bars
-            HStack(spacing: 14) {
+            HStack(spacing: 14 * s) {
                 ForEach(0..<12) { _ in
                     RoundedRectangle(cornerRadius: 1)
                         .fill(
@@ -556,15 +584,15 @@ struct BalconyRailingView: View {
                                 startPoint: .top, endPoint: .bottom
                             )
                         )
-                        .frame(width: 3, height: 44)
+                        .frame(width: 3 * s, height: 44 * s)
                 }
             }
-            .offset(y: -22)
+            .offset(y: -22 * s)
 
             // Bottom rail
             Rectangle()
                 .fill(Color(red: 0.50, green: 0.50, blue: 0.55))
-                .frame(height: 3)
+                .frame(height: 3 * s)
         }
     }
 }
@@ -572,11 +600,12 @@ struct BalconyRailingView: View {
 // MARK: - Wife
 
 struct WifeView: View {
+    private var s: CGFloat { LayoutScale.factor }
     var body: some View {
         Image("WifeChar")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(height: 140)
+            .frame(height: 140 * s)
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .shadow(color: .red.opacity(0.4), radius: 10, y: 2)
     }

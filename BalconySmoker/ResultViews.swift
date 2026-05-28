@@ -55,7 +55,7 @@ struct GameOverView: View {
             Image("GameOverSkull")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(height: 160)
+                .frame(height: 160 * LayoutScale.factor)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
                 .shadow(color: .white.opacity(0.2), radius: 15)
             Text("ゲームオーバー").font(.system(size: 32, weight: .black)).foregroundColor(.red)
